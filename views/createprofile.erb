@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-4">
+
+
+		<h2 class="create-profile">Create Your Profile</h2>
+
+		<% if current_user.nil? %>
+
+			<p class="create-profile">You must be logged in to edit your profile.</p>
+			<a class="create-profile" href="/login">Login</a>
+
+		<% elsif current_user.profile.nil? %>
+
+			<form method="POST" action="/profile_prompt" class="create-profile">
+				<p>*All fields required</p>
+				<input type="text" name="fname" placeholder="First name" required>
+				<br>
+				<br>
+				<input type="text" name="lname" placeholder="Last name" required>
+				<br>
+				<br>
+				<input type="text" name="location" placeholder="Location" required>
+				<br>
+				<br>
+				<textarea name="bio" placeholder="Biography" required rows="3" cols="40"></textarea>
+				<br>
+				<br>
+				<input type="hidden" name="user_id" value="<%=current_user.id%>">
+				<input type="submit">
+
+
+			</form>
+
+		<% end %>
+	</div>
+</div>

@@ -1,0 +1,27 @@
+1. XXXXX Put feed on home page XXXXX
+	a. Logic for feed (10 messages as a threshold)
+	b. option to view all messages
+2. XXXXX Conditional navbar based on whether a user is logged in XXXXXX
+3. Edit account details
+4. Layout!
+5. Profile prompt - prompt to login or signup
+6. Make profile form details all required
+7. get rid of about page?
+8. XXXXXXX Create feed based on follows XXXXXXX
+9. Don't allow following if not logged in or already folowing.
+10. XXXXX Modify posts table to add timestamp. XXXXXXX 
+
+
+
+Issues:
+
+1. How to handle going to "Users" page when not logged in
+2. Logic for handling user with less than 10 posts.  Options to display all posts (not just most recent 10)
+3. Handling profile if they haven't posted any or enough messages (if statment cuz of feed)
+
+If there's time:
+
+1. change password
+2. add mandrill
+3. email verification
+4. 

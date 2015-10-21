@@ -1,0 +1,84 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<h3><%= current_user.profile.fname%> <%=current_user.profile.lname %>'s Profile</h3>
+
+		<h4><%= current_user.profile.location %></h4>
+
+		<h4><%= current_user.profile.bio %></h4>
+
+		<form method="POST" action="/profile">
+			<div class="form-group">
+				<textarea name="message" placeholder="Tell me something..." rows="5" cols="75"></textarea>
+				<br>
+				<input type="submit" value="Post">
+		</div>
+		</form>
+	</div>
+</div>
+
+<div class="row">
+
+	<div class="col-md-4">
+
+
+
+		<h2 class="profile-heading">My fleets</h2>
+
+			<% recent_posts = Post.where(user_id: @current_user.id) %>
+
+  		<%if recent_posts.length == 0 %>
+     	<p>You have no fleets. Get to it!</p>
+  		<% elsif recent_posts.length >= 10
+    	recent_posts = recent_posts[-10..-1].reverse %>
+
+      <div>
+      	<ul class="post-list">
+      		<% recent_posts.each do |post| %>
+      			<li class="post"><%= post[:message] %></li>
+      		<% end %>
+      	</ul>
+      </div>
+  		<% else recent_posts = recent_posts.reverse%>
+
+      <div>
+        <ul class="post-list">
+          <% recent_posts.each do |post| %>
+            <li class="post"><%= post[:message] %></li>
+          <% end %>
+        </ul>
+      </div>
+  	<% end %>
+
+	</div>
+	<div class="col-md-4">
+
+			<h2 class="profile-heading">Followers</h2>
+
+			<ul>
+			<% follower_array = current_user.followerids
+
+			    follower_array.each do |hash| %>
+			    <li class="user-list"><%= User.find(hash[:user_id]).username %></li>
+
+			<% end %>
+
+			</ul>
+
+	</div>
+	<div class="col-md-4">
+
+		<h2 class="profile-heading">Following</h2>
+
+			<ul>
+				<% following_array = Followerid.find(current_user.id).users
+
+    		following_array.each do |hash| %>
+    			<li class="user-list"><%= User.find(hash[:id]).username %></li>
+
+				<% end %>
+
+			</ul>
+	</div>
+
+
+</div>

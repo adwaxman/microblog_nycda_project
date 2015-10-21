@@ -1,0 +1,47 @@
+<div class="row">
+	<div class="col-md-6">
+		<h3>Current information</h3>
+		<div>
+			<h3><%= current_user.profile.fname%> <%=current_user.profile.lname %>'s Profile</h3>
+
+			<h4><%= current_user.profile.location %></h4>
+
+			<h4><%= current_user.profile.bio %></h4>
+		</div>
+	</div>
+
+
+	<div class="col-md-6">
+		<h3>Update your profile</h3>
+
+		<div>
+			<% @profile = current_user.profile %>
+			<form method="POST" action="/updateprofile">
+				<label for="fname">First Name</label>
+				<br>
+				<input type="text" name="fname" value="<%=@profile.fname %>" required>
+				<br>
+				<br>
+				<label for="lname">Last Name</label>
+				<br>
+				<input type="text" name="lname" value="<%=@profile.lname %>" required>
+				<br>
+				<br>
+				<label for="location">Location</label>
+				<br>
+				<input type="text" name="location" value="<%=@profile.location %>" required>
+				<br>
+				<br>
+				<label for="bio">Biography</label>
+				<br>
+				<textarea name="bio" required rows="3" cols="40" value="<%=@profile.bio %>" required><%=@profile.bio %></textarea>
+				<br>
+				<br>
+				<input type="submit">
+			</form>
+
+
+		</div>
+	</div>
+</div>
+

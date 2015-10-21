@@ -1,0 +1,39 @@
+<h1><%= @user.username %> </h1>
+
+
+	<form method="POST" action="/user">
+		<input type="hidden" name="followed" value="<%= @user.id %>">
+		<input type="submit" value="Follow" name="follow">
+	</form>
+
+<h2><%= @user.username %>'s Fleets</h2>
+
+	<ul>
+		<% posts = @user.posts 
+			posts.each do |post|%>
+			
+			<li><%=post[:message]%></li>
+		
+		<%end%>
+	</ul>
+
+<h2><%= @user.username %>'s Followers</h2>
+
+	<ul>
+		<% follower_arr = @user.followerids 
+			follower_arr.each do |hash| %>
+
+			<li><%= User.find(hash[:user_id]).username %></li>
+		
+		<%end%>
+	</ul>
+
+<h2>Following</h2>
+	<ul>
+		<% following_arr = Followerid.find(@user.id).users
+			following_arr.each do |hash| %>
+		
+			<li><%= User.find(hash[:id]).username%></li>
+
+		<%end%>
+	</ul>

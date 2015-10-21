@@ -1,0 +1,60 @@
+
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+
+
+		<% if current_user.nil? %>
+
+		<% elsif current_user.profile.nil? %>
+
+			<p>You have not yet created a profile. <a href="/createprofile">Click here to create one</a> </p>
+
+		<% end %>
+
+
+		<% if session[:user_id] %>
+
+			<h3 class="home-feed">My Feed</h3>
+
+			<ul class="post-list home">
+				<%
+
+				#stores the users that the current_user follows
+				current_user_following = Followerid.find(current_user.id).users
+
+
+				#store the IDs of the followed in an array
+				arr_followed = []
+				current_user_following.each do |hash|
+					arr_followed.push(hash[:id])
+				end
+
+				#store all of the posts of the users with those ids. produces an array of arrays of hashes of posts
+				followed_posts = []
+				arr_followed.each do |user_id|
+					followed_posts.push(User.find(user_id).posts)
+				end
+
+				#Concats each array so that it's just an array of hashes which can then be sorted by a the created_at value for each post hash
+				new_array = []
+				followed_posts.each do |arr|
+					new_array = new_array + arr
+				end
+
+				#sort posts by create_at datetime.  reverse so that most recent message is first in the array
+				sorted_posts = new_array.sort_by {|x| x[:created_at]}
+				sorted_posts.reverse!
+
+				sorted_posts.each do |post|
+				%>
+
+				<li class="post">
+					<%= post.created_at.strftime("%B %d, %Y at %I:%M %p")%>
+					<br>
+					<%=User.find(post.user_id).username %>: <%= post.message%>
+				</li>
+				<% end %>
+			</ul>
+		<%end%>
+	</div>
+</div>

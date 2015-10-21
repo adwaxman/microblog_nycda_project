@@ -1,0 +1,122 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Fira+Mono' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="/js/main.js"></script>
+</head>
+<body>
+	<!-- <%
+		navbar = ["HOME", "PROFILE", "CONTACT", "USERS"]
+		pages = ["", "profile", "contact", "users"]
+	 %>
+	<nav class="navbar navbar-default">
+		<ul class="pull-left" >
+			<% navbar.each_with_index do |item,i|%>
+				<li style="display: inline-block">
+					<a href="/<%= pages[i] %>">
+						<%= item %>
+					</a>
+				</li>
+			<% end %>
+		</ul>
+		<ul class="pull-right">
+			<% if session[:user_id] %>
+
+				<li style="display: inline-block" class="open-menu">
+					<%= current_user.username%> <i class="fa fa-chevron-circle-down"></i>
+				</li>
+			<% else %>
+
+				<li style="display: inline-block">
+					<a href="/signup"> SIGN UP </a>
+				</li>
+				<li style="display: inline-block">
+					<a href="/login"> LOGIN </a>
+				</li>
+			<% end %>
+		</ul>
+	</nav> -->
+	<nav class="navbar navbar-default" role="navigation">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#"></a>
+	    </div>
+
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="navbar">
+	      <ul class="nav navbar-nav pull-left">
+	        <li class="active"><a href="/">HOME</a></li>
+	        <li><a href="/profile">PROFILE</a></li>
+	        <li><a href="/users">USERS</a></li>
+	      </ul>
+
+	      <ul class="nav navbar-nav navbar-right">
+	        <% if session[:user_id] %>
+
+	          <li class="open-menu">
+	            <%= current_user.username%> <i class="fa fa-chevron-circle-left"></i>
+	          </li>
+	        <% else %>
+
+	          <li>
+	            <a href="/signup"> SIGN UP </a>
+	          </li>
+	          <li>
+	            <a href="/login"> LOGIN </a>
+	          </li>
+	        <% end %>
+
+	      </ul>
+
+
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+
+
+	<div class="drop-menu">
+		<div>
+			<ul>
+				<li class="close-menu">
+					<i class="fa fa-times-circle"></i>
+				</li>
+				<li>
+					<a href="/updateprofile">UPDATE PROFILE</a>
+				</li>
+				<li>
+					<a href="/logout">LOGOUT</a>
+				</li>
+				<li>
+					<a href="/delete_account">DELETE ACCOUNT</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<% if flash[:alert] %>
+		<div class="alert">
+			<p><%=flash[:alert] %></p>
+		</div>
+	<% end %>
+
+	<%= yield %>
+
+
+
+
+</body>
+</html>

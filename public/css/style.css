@@ -1,0 +1,80 @@
+body {
+	background: #D9F0D9;
+	font-family: 'Fira Mono';
+	color: darkgreen;
+}
+
+.account-deleted {
+	margin-left: 10px;
+}
+
+.create-profile {
+	margin-left: 10px;
+}
+
+.home-feed {
+	text-align: center;
+}
+
+.post-list {
+	list-style: none;
+}
+
+.post {
+	border: 1px solid black;
+	margin-bottom: 2rem;
+	padding: 2rem;
+}
+
+.open-menu {
+	margin-top: 15px;
+}
+
+.drop-menu {
+	top: 100px;
+	position: absolute;
+	top:52px;
+	right:0px;
+	background-color: red;
+	z-index: 2;
+	display: none;
+
+}
+
+
+.drop-menu ul {
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	padding:0;
+	margin: 0;
+}
+
+.drop-menu li {
+	list-style: none;
+	border-bottom: 1px solid black;
+	padding: 5px;
+
+}
+
+.icon-close {
+	text-align: left;
+	padding: 5px;
+}
+
+.login-form {
+	margin-top: 8%;
+	margin-left: 5px;
+}
+
+.welcome {
+	margin-left: 10px;
+}
+
+.user-list {
+	list-style: none;
+}
+
+.profile-heading{
+	text-align: center;
+}

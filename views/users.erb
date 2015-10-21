@@ -1,0 +1,46 @@
+<h2> Flitter Users</h2>
+
+
+<ul>
+
+
+
+<% @users.each do |user| %>
+
+	<% if current_user.nil?  %>
+	<li><a href="user/<%= user.id %>"> <%=user.username %> </a></li>
+
+	<% elsif current_user == user %>
+
+	<li>
+		<a href="/profile"> <%=user.username %> </a>
+	</li>
+
+	<% elsif Followerid.find(current_user.id).users.include?user %>
+	<li>
+		<a href="user/<%= user.id %>"> <%=user.username %> </a>
+		<form method="POST" action="/users">
+			<input type="hidden" name="user" value="<%= user.id %>">
+			<input type="submit" value="Unfollow" name="follow">
+		</form>
+	</li>
+
+	<% else %>
+
+	<li>
+		<a href="user/<%= user.id %>"> <%=user.username %> </a>
+		<form method="POST" action="/users">
+			<!-- <input type="hidden" name="followed" value="follow"> -->
+			<input type="hidden" name="user" value="<%= user.id %>">
+			<input type="submit" value="Follow" name="follow">
+		</form>
+	</li>
+
+	<%end %>
+
+
+<% end %>
+
+
+</ul>
+
