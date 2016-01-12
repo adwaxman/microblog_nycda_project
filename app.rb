@@ -4,7 +4,7 @@ require 'sinatra/flash'
 require 'mandrill'
 enable :sessions
 
-
+require './environments.rb'
 require './models.rb'
 
 get '/' do

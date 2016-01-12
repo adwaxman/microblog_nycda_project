@@ -78,3 +78,8 @@ body {
 .profile-heading{
 	text-align: center;
 }
+
+#logo {
+	color: blue;
+	font-size: 20px;
+}

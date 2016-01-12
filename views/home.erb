@@ -1,23 +1,62 @@
+<% if current_user.nil? %>
 
+<div class="row login-form text-center">
+  <div class="col-md-4">
+		<h4>Log In</h4>
+    <form action="/login" method="POST">
+      <label for="username">Username</label>
+      <input name="username" type="text">
+      <br>
+      <br>
+      <label for="password">Password</label>
+      <input name="password" type="password">
+      <br>
+      <br>
+      <input type="submit" value="Log In">
+    </form>
+  </div>
+  <div class="col-md-2">
+  	<h1>OR</h1>
+  </div>
+
+  <div class="col-md-4">
+		<h4>Sign Up</h4>
+    <form action="/signup" method="POST">
+      <label for="email">Email</label>
+      <input name="email" required type="text">
+      <br>
+      <br>
+      <label for="username">Username</label>
+      <input name="username" required type="text">
+      <br>
+      <br>
+      <label for="password">Password</label>
+      <input name="password" required type="password">
+      <br>
+      <br>
+      <input type="submit" value="Sign Up">
+    </form>
+  </div>
+</div>
+<% else %>
 <div class="row">
-	<div class="col-md-4 col-md-offset-4">
+  <div class="col-md-4 col-md-offset-4">
+
+	<% if current_user.profile.nil? %>
 
 
-		<% if current_user.nil? %>
+    <p>You have not yet created a profile.
+      <a href="/createprofile">Click here to create one</a>
+    </p>
 
-		<% elsif current_user.profile.nil? %>
+    <% end %>
 
-			<p>You have not yet created a profile. <a href="/createprofile">Click here to create one</a> </p>
+    <% if session[:user_id] %>
 
-		<% end %>
+    <h3 class="home-feed">My Feed</h3>
 
-
-		<% if session[:user_id] %>
-
-			<h3 class="home-feed">My Feed</h3>
-
-			<ul class="post-list home">
-				<%
+    <ul class="post-list home">
+      <%
 
 				#stores the users that the current_user follows
 				current_user_following = Followerid.find(current_user.id).users
@@ -58,3 +97,4 @@
 		<%end%>
 	</div>
 </div>
+<% end %>
