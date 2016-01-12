@@ -82,7 +82,6 @@ end
 
 post '/profile' do
 	Post.create(message: params[:message], user_id: current_user.id)
-	puts Post.last
 	redirect 'profile'
 end
 
@@ -92,8 +91,12 @@ get '/users' do
 end
 
 get '/user/:id' do
+	if current_user.nil?	
+		flash[:alert] = "You must be logged in to view a users page"
+		redirect '/'
+	end
+
 	@user = User.find(params[:id])
-	puts params[:id]
 	if @user == User.find(current_user.id)
 		erb :profile
 	else
@@ -107,13 +110,6 @@ end
 
 post '/user' do
 	var = params[:follow]
-	puts var
-	if var == "Follow"
-		puts "this is working"
-	else
-	    puts "this is not working"
-	end
-
 	if var == "Follow"
 		FolloweridsUser.create(user_id: params[:followed],followerid_id: current_user.id)
 	end
