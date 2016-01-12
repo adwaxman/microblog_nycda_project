@@ -7,57 +7,18 @@
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<link href='https://fonts.googleapis.com/css?family=Fira+Mono' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="/js/main.js"></script>
 </head>
 <body>
-	<!-- <%
-		navbar = ["HOME", "PROFILE", "CONTACT", "USERS"]
-		pages = ["", "profile", "contact", "users"]
-	 %>
-	<nav class="navbar navbar-default">
-		<ul class="pull-left" >
-			<% navbar.each_with_index do |item,i|%>
-				<li style="display: inline-block">
-					<a href="/<%= pages[i] %>">
-						<%= item %>
-					</a>
-				</li>
-			<% end %>
-		</ul>
-		<ul class="pull-right">
-			<% if session[:user_id] %>
 
-				<li style="display: inline-block" class="open-menu">
-					<%= current_user.username%> <i class="fa fa-chevron-circle-down"></i>
-				</li>
-			<% else %>
-
-				<li style="display: inline-block">
-					<a href="/signup"> SIGN UP </a>
-				</li>
-				<li style="display: inline-block">
-					<a href="/login"> LOGIN </a>
-				</li>
-			<% end %>
-		</ul>
-	</nav> -->
 	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
-	    <div class="navbar-header">
-	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
-	        <span class="sr-only">Toggle navigation</span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	        <span class="icon-bar"></span>
-	      </button>
-	      <a class="navbar-brand" href="#"></a>
-	    </div>
-
 
 	    <!-- Collect the nav links, forms, and other content for toggling -->
 	    <div class="collapse navbar-collapse" id="navbar">
-	      <ul class="nav navbar-nav pull-left">
-	        <li class="active"><a href="/">HOME</a></li>
+	      <ul class="nav navbar-nav">
+	        <li><a href="/">HOME</a></li>
 	        <li><a href="/profile">PROFILE</a></li>
 	        <li><a href="/users">USERS</a></li>
 	      </ul>
@@ -114,6 +75,7 @@
 	<% end %>
 
 	<%= yield %>
+
 
 
 
