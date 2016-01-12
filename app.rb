@@ -4,7 +4,7 @@ require 'sinatra/flash'
 require 'mandrill'
 enable :sessions
 
-set :database, 'sqlite3:flitter.sqlite3'
+
 require './models.rb'
 
 get '/' do
